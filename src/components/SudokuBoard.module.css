@@ -1,0 +1,13 @@
+.sudokuBoard {
+  grid-gap: 1px;
+  border: 2px solid black;
+  display: inline-block;
+}
+.sudokuRow:nth-child(3n + 3) {
+  border-bottom: 2px solid #000;
+}
+
+/* Add thick top border for every 3rd row */
+.sudokuRow:nth-child(3n + 1) {
+  border-top: 2px solid #000;
+}

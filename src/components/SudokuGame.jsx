@@ -41,6 +41,9 @@ function SudokuGame() {
     const isValid = (arr) => {
       const seen = new Set();
       for (let num of arr) {
+        if (num == null) {
+          return false;
+        }
         if (num !== null && seen.has(num)) {
           return false;
         }

@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./SudokuCell.module.css";
 
 function SudokuCell({ row, col, value, editable, onChange }) {
   const handleChange = (e) => {
@@ -8,14 +9,16 @@ function SudokuCell({ row, col, value, editable, onChange }) {
 
   return (
     <input
-      className={`sudoku-cell ${editable ? "editable" : "readonly"}`}
-      type="number"
+      className={`${styles.sudokuCell} ${editable ? "editable" : "readonly"}`}
+      type="text"
+      inputmode="numeric"
+      pattern="^[0-9]*$"
       value={value || ""}
       min="1"
       max="9"
       readOnly={!editable}
       onChange={handleChange}
-      style={{ height: 40 }}
+      style={{ backgroundColor: `${!editable ? "antiquewhite" : "white"}` }}
     />
   );
 }
