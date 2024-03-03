@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SudokuBoard from "./SudokuBoard";
+import Styles from "./SudokuGame.module.css";
 
 const initialBoard = [
   [5, 3, null, null, 7, null, null, null, null],
@@ -36,6 +37,57 @@ function SudokuGame() {
   const handleReset = () => {
     setBoard(initialBoard);
   };
+  const handleStartNewGame = () => {
+    const board = Array.from({ length: 9 }, () =>
+      Array.from({ length: 9 }, () => null)
+    );
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        let num = Math.floor(Math.random() * 9 + 1);
+        if (
+          checkHorizontal(board, num, row, col) &&
+          checkVertical(board, num, row, col) &&
+          checkBox(board, num, row, col)
+        ) {
+          board[row][col] = num;
+        }
+      }
+    }
+    setBoard(board);
+  };
+  function checkHorizontal(board, num, x, y) {
+    for (let i = 0; i < 9; i++) {
+      let cur = board[x][i];
+      if (i !== y && cur === num) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function checkVertical(board, num, x, y) {
+    for (let i = 0; i < 9; i++) {
+      let cur = board[i][y];
+      if (i !== x && cur === num) {
+        return false;
+      }
+    }
+    return true;
+  }
+  function checkBox(board, num, x, y) {
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        let h = i + x - (x % 3);
+        let v = j + y - (y % 3);
+        let cur = board[h][v];
+
+        if (h !== x && v !== y && cur === num) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 
   const handleCheck = () => {
     const isValid = (arr) => {
@@ -90,12 +142,13 @@ function SudokuGame() {
   };
 
   return (
-    <div className="sudoku-game">
+    <div className={Styles.SudokuGame}>
       <h1>Sudoku Game</h1>
       <SudokuBoard board={board} onCellChange={handleCellChange} />
-      <div className="sudoku-controls">
+      <div className={Styles.SudokuControls}>
         <button onClick={handleReset}>Reset</button>
         <button onClick={handleCheck}>Check</button>
+        <button onClick={handleStartNewGame}>Start New Game</button>
       </div>
     </div>
   );

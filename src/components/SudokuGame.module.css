@@ -1,0 +1,19 @@
+.SudokuGame {
+  margin-bottom: 50px;
+}
+.SudokuControls {
+  margin: 20px;
+}
+.SudokuControls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+.SudokuControls button {
+  background-color: #282c34;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 5px;
+  color: aqua;
+  font-size: 16px;
+}

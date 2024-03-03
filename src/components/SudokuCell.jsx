@@ -11,7 +11,7 @@ function SudokuCell({ row, col, value, editable, onChange }) {
     <input
       className={`${styles.sudokuCell} ${editable ? "editable" : "readonly"}`}
       type="text"
-      inputmode="numeric"
+      inputMode="numeric"
       pattern="^[0-9]*$"
       value={value || ""}
       min="1"
