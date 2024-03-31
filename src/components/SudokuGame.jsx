@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SudokuBoard from "./SudokuBoard";
 import Styles from "./SudokuGame.module.css";
 
-const initialBoard = [
+let initialBoard = [
   [5, 3, null, null, 7, null, null, null, null],
   [6, null, null, 1, 9, 5, null, null, null],
   [null, 9, 8, null, null, null, null, 6, null],
@@ -54,6 +54,7 @@ function SudokuGame() {
       }
     }
     setBoard(board);
+    initialBoard = board;
   };
   function checkHorizontal(board, num, x, y) {
     for (let i = 0; i < 9; i++) {
